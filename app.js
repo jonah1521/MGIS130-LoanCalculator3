@@ -41,7 +41,7 @@ function calculateLoanAmortization(principal, annualRate, termYears) {
 }
 
 // ==========================================
-// 3. USER INTERFACE LAYER (DOM Updates)
+// 3. PRESENTATION LAYER (DOM Manipulation)
 // ==========================================
 function updateUI(results) {
   document.getElementById('monthly-payment').textContent = `$${results.monthlyPayment}`;
@@ -60,17 +60,17 @@ function displayError(message) {
   document.getElementById('results').classList.add('hidden');
 }
 
-// Event Listener Initialization
+// Event Controller
 document.getElementById('loan-form').addEventListener('submit', function (event) {
   event.preventDefault();
   try {
-    const rawData = getLoanInputs(); // Data Layer call
+    const rawData = getLoanInputs(); // Data Layer
     const processedData = calculateLoanAmortization(
       rawData.amount,
       rawData.annualInterest,
       rawData.years
-    ); // Processing Layer call
-    updateUI(processedData); // UI Layer call
+    ); // Processing Layer
+    updateUI(processedData); // Presentation Layer
   } catch (error) {
     displayError(error.message);
   }
